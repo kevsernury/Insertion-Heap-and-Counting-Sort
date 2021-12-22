@@ -9,12 +9,12 @@ package sorting;
  *
  * @author Kevsernur
  */
-public class Heap {
+public class _Grup_13_Heap {
 
     int Array[];
     int HeapSize;
 
-    public Heap(int[] array) {
+    public _Grup_13_Heap(int[] array) {
         int[] arr = new int[array.length];
         
         for(int i = 0; i < array.length; i++){

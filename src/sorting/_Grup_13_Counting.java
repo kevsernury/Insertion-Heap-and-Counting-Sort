@@ -9,13 +9,13 @@ package sorting;
  *
  * @author Kevsernur
  */
-public class Counting {
+public class _Grup_13_Counting {
 
     int Array[];
     int CounterArray[];
     int ResultArray[];
 
-    public Counting(int[] array) {
+    public _Grup_13_Counting(int[] array) {
         int[] arr = new int[array.length];
         
         for(int i = 0; i < array.length; i++){

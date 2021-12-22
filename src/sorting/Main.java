@@ -19,120 +19,165 @@ public class Main {
 
     public static void main(String[] args) {
 
-        NewArray array_100 = new NewArray(100);
-        NewArray array_bin = new NewArray(1000);
-        NewArray array_50bin = new NewArray(50000);
-        NewArray array_500bin = new NewArray(500000);
-        NewArray array_10milyon = new NewArray(10000000);
-
+        _Grup_13_NewArray array_100 = new _Grup_13_NewArray(100);
+        _Grup_13_NewArray array_bin = new _Grup_13_NewArray(1000);
+        _Grup_13_NewArray array_50bin = new _Grup_13_NewArray(50000);
+        _Grup_13_NewArray array_500bin = new _Grup_13_NewArray(500000);
+        _Grup_13_NewArray array_2bucukmilyon = new _Grup_13_NewArray(2500000);
+        
+        System.out.println("Verilen 100 elemanlı dizi:");
+        for (int i = 0; i < 100; i++) {
+            System.out.print(array_100.AscArray[i] + " ");
+        }
+        
+        System.out.println("\nInsertion Sort:");        
+        _Grup_13_InsertionSort Arr1 = new _Grup_13_InsertionSort(array_100.AscArray);
+        Arr1.insertionSort();
+        for (int i = 0; i < 100; i++) {
+            System.out.print(Arr1.Array[i] +" ");
+        }
+        
+        System.out.println("\nCounting Sort:");  
+        _Grup_13_Counting Arr2 = new _Grup_13_Counting(array_100.AscArray);
+        Arr2.Sort();
+        for (int i = 0; i < 100; i++) {
+            System.out.print(Arr2.ResultArray[i] + " ");
+        }
+        
+        System.out.println("\nHeap Sort:");  
+        _Grup_13_Heap ascArr = new _Grup_13_Heap(array_100.AscArray);
+        ascArr.MinHeapSort();
+        for (int i = 0; i < 100; i++) {
+            System.out.print(ascArr.Array[i] + " ");
+        }
+        
         System.out.println("-------100--------");
-        CountTime(array_100);
+        Work(array_100);
         System.out.println("");
         System.out.println("-------1.000--------");
-        CountTime(array_bin);
+        Work(array_bin);
         System.out.println("");
         System.out.println("-------50.000--------");
-        CountTime(array_50bin);
+        Work(array_50bin);
         System.out.println("");
         System.out.println("-------500.000--------");
-        CountTime(array_500bin);
+        Work(array_500bin);
         System.out.println("");
         System.out.println("-------10.000.000--------");
-        CountTime(array_10milyon);
+        Work(array_2bucukmilyon);
 
     }
 
-    private static void CountTime(NewArray array) {
+    private static void Work(_Grup_13_NewArray array) {
 
-        //Haep
+        System.out.println("---Insertion Sort---");
+        AllInsertionSort(array);
+
         System.out.println("---Heap Sort---");
         AllHeapSort(array);
 
-        //Count
         System.out.println("---Counting Sort---");
         AllCountingSort(array);
-
-        //instertion
     }
 
-    private static void AllCountingSort(NewArray array) {
+  
 
-        //    System.out.println("ASC array");
-        //  PrintArray(array.AscArray);
-        //beforeUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-        beforeUsedMem = Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
+    private static void AllInsertionSort(_Grup_13_NewArray array) {
+        beforeUsedMem = beforeUsedMem = Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
         start = System.nanoTime();
-        Counting ascArr = new Counting(array.AscArray);
-        ascArr.Sort();
+        _Grup_13_InsertionSort ascArr = new _Grup_13_InsertionSort(array.AscArray);
+        ascArr.insertionSort();
         end = System.nanoTime();
-        //afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-        afterUsedMem = Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
+        afterUsedMem = beforeUsedMem = Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
         actualMemUsed = afterUsedMem - beforeUsedMem;
+
         System.out.println("Asc (K->B) time: " + (end - start) / 1000000);
         System.out.println("Space: " + actualMemUsed);
-       // PrintArray(ascArr.ResultArray);
 
-        //System.out.println("DESC array");
-        //PrintArray(array.DescArray);        
-        beforeUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        beforeUsedMem =Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
         start = System.nanoTime();
-        Counting descArr = new Counting(array.DescArray);
-        descArr.Sort();
+        _Grup_13_InsertionSort descArr = new _Grup_13_InsertionSort(array.DescArray);
+        descArr.insertionSort();
         end = System.nanoTime();
-        afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        afterUsedMem =Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
         actualMemUsed = afterUsedMem - beforeUsedMem;
         System.out.println("Desc (B->K) time: " + (end - start) / 1000000);
         System.out.println("Space: " + actualMemUsed);
-       // PrintArray(descArr.ResultArray);
 
-        //   System.out.println("Random array");
-        //   PrintArray(array.RandomArray);
-        beforeUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        beforeUsedMem =Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
         start = System.nanoTime();
-        Counting randArr = new Counting(array.RandomArray);
-        randArr.Sort();
+        _Grup_13_InsertionSort randArr = new _Grup_13_InsertionSort(array.RandomArray);
+        randArr.insertionSort();
         end = System.nanoTime();
-        afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        afterUsedMem =Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
         actualMemUsed = afterUsedMem - beforeUsedMem;
         System.out.println("Random (Karışık) time: " + (end - start) / 1000000);
         System.out.println("Space: " + actualMemUsed);
-      //  PrintArray(randArr.ResultArray);
-
     }
 
-    private static void AllHeapSort(NewArray array) {
-        
-        beforeUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();        
+    private static void AllCountingSort(_Grup_13_NewArray array) {
+
+        beforeUsedMem =Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
         start = System.nanoTime();
-        
-        Heap ascArr = new Heap(array.AscArray);
-        ascArr.MinHeapSort();
-        
-        end = System.nanoTime();        
-        afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        _Grup_13_Counting ascArr = new _Grup_13_Counting(array.AscArray);
+        ascArr.Sort();
+        end = System.nanoTime();
+        afterUsedMem =Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
         actualMemUsed = afterUsedMem - beforeUsedMem;
-        
         System.out.println("Asc (K->B) time: " + (end - start) / 1000000);
         System.out.println("Space: " + actualMemUsed);
-        
-        
-        beforeUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+
+        beforeUsedMem =Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
         start = System.nanoTime();
-        Heap descArr = new Heap(array.DescArray);
-        descArr.MinHeapSort();
+        _Grup_13_Counting descArr = new _Grup_13_Counting(array.DescArray);
+        descArr.Sort();
         end = System.nanoTime();
-        afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        afterUsedMem =Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
         actualMemUsed = afterUsedMem - beforeUsedMem;
         System.out.println("Desc (B->K) time: " + (end - start) / 1000000);
         System.out.println("Space: " + actualMemUsed);
 
-        
-        beforeUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        beforeUsedMem =Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
         start = System.nanoTime();
-        Heap randArr = new Heap(array.RandomArray);
+        _Grup_13_Counting randArr = new _Grup_13_Counting(array.RandomArray);
+        randArr.Sort();
+        end = System.nanoTime();
+        afterUsedMem =Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
+        actualMemUsed = afterUsedMem - beforeUsedMem;
+        System.out.println("Random (Karışık) time: " + (end - start) / 1000000);
+        System.out.println("Space: " + actualMemUsed);
+
+    }
+
+    private static void AllHeapSort(_Grup_13_NewArray array) {
+
+        beforeUsedMem =Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
+        start = System.nanoTime();
+        _Grup_13_Heap ascArr = new _Grup_13_Heap(array.AscArray);
+        ascArr.MinHeapSort();
+        end = System.nanoTime();
+        afterUsedMem =Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
+        actualMemUsed = afterUsedMem - beforeUsedMem;
+
+        System.out.println("Asc (K->B) time: " + (end - start) / 1000000);
+        System.out.println("Space: " + actualMemUsed);
+
+        beforeUsedMem =Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
+        start = System.nanoTime();
+        _Grup_13_Heap descArr = new _Grup_13_Heap(array.DescArray);
+        descArr.MinHeapSort();
+        end = System.nanoTime();
+        afterUsedMem =Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
+        actualMemUsed = afterUsedMem - beforeUsedMem;
+        System.out.println("Desc (B->K) time: " + (end - start) / 1000000);
+        System.out.println("Space: " + actualMemUsed);
+
+        beforeUsedMem =Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
+        start = System.nanoTime();
+        _Grup_13_Heap randArr = new _Grup_13_Heap(array.RandomArray);
         randArr.MinHeapSort();
         end = System.nanoTime();
-        afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        afterUsedMem =Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory();
         actualMemUsed = afterUsedMem - beforeUsedMem;
         System.out.println("Random (Karışık) time: " + (end - start) / 1000000);
         System.out.println("Space: " + actualMemUsed);
@@ -144,4 +189,5 @@ public class Main {
         }
         System.out.println("");
     }
+
 }

@@ -7,14 +7,14 @@ package sorting;
 
 import java.util.Random;
 
-public class NewArray {
+public class _Grup_13_NewArray {
 
     int RandomArray[];
     int AscArray[];
     int DescArray[];
     int Size;
 
-    public NewArray(int size) {
+    public _Grup_13_NewArray(int size) {
         Size = size;
         int[] arr = new int[size];
         Random r = new Random();
@@ -35,7 +35,7 @@ public class NewArray {
             ascArray[i] = arr[i];
         }
         
-        Heap ascArr = new Heap(ascArray);
+        _Grup_13_Heap ascArr = new _Grup_13_Heap(ascArray);
         ascArr.MaxHeapSort();
         AscArray = ascArr.Array;
     }
@@ -47,7 +47,7 @@ public class NewArray {
             descArray[i] = arr[i];
         }
         
-        Heap descArr = new Heap(descArray);
+        _Grup_13_Heap descArr = new _Grup_13_Heap(descArray);
         descArr.MinHeapSort();
         DescArray = descArr.Array;
     }
