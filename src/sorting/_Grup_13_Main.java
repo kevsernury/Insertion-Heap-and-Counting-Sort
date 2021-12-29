@@ -9,7 +9,7 @@ package sorting;
  *
  * @author Kevsernur
  */
-public class Main {
+public class _Grup_13_Main {
 
     static long start;
     static long end;
